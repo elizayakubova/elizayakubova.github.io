@@ -78,15 +78,13 @@ const projects = {
       "Одна папка с презентационными проектами: учебные исследования, визуальный анализ, концепты и редакционная верстка. Внутри собраны Bodom, анализ «Кофемании», Om Nom Game и другие презентационные материалы.",
     extraLinks: [
       { label: "Анализ Кофемании PDF", href: "assets/files/presentations/coffeemania-analysis.pdf" },
-      { label: "Om Nom Game PDF", href: "assets/files/presentations/om-nom-game.pdf" },
-      { label: "Vassa Bokova PDF", href: "assets/files/presentations/vassa-bokova-case.pdf" }
+      { label: "Om Nom Game PDF", href: "assets/files/presentations/om-nom-game.pdf" }
     ],
     images: [
       ["assets/images/presentations-editorial-cover.jpg", "Редакционная исследовательская презентация"],
       ["assets/images/bodom-cover.jpg", "Обложка презентации Bodom"],
       ["assets/images/coffeemania-cover.jpg", "Обложка анализа «Кофемании»"],
-      ["assets/images/om-nom-game-cover.jpg", "Обложка презентации Om Nom Game"],
-      ["assets/images/vassa-bokova-cover.jpg", "Обложка презентации Vassa Bokova"]
+      ["assets/images/om-nom-game-cover.jpg", "Обложка презентации Om Nom Game"]
     ]
   }
 };
@@ -101,7 +99,10 @@ const modalDescription = document.querySelector("[data-modal-description]");
 const modalActions = document.querySelector("[data-modal-actions]");
 const modalGallery = document.querySelector("[data-modal-gallery]");
 const viewCursor = document.querySelector(".view-cursor");
+const projectCards = document.querySelectorAll("[data-project]");
+const mobileColorQuery = window.matchMedia("(max-width: 620px)");
 let lastFocusedElement = null;
+let mobileColorObserver = null;
 
 const createProjectLink = (label, href) => {
   const link = document.createElement("a");
@@ -117,6 +118,7 @@ const openProject = (projectId) => {
   if (!project || !modal) return;
 
   lastFocusedElement = document.activeElement;
+  modal.dataset.project = projectId;
   modalIndex.textContent = project.index;
   modalTitle.textContent = project.title;
   modalType.textContent = project.type;
@@ -163,6 +165,36 @@ document.querySelectorAll("[data-project]").forEach((card) => {
   card.addEventListener("mouseleave", () => viewCursor?.classList.remove("is-visible"));
 });
 
+const updateMobileColorObserver = () => {
+  mobileColorObserver?.disconnect();
+  mobileColorObserver = null;
+  projectCards.forEach((card) => card.classList.remove("is-in-view"));
+
+  if (!mobileColorQuery.matches || !("IntersectionObserver" in window)) return;
+
+  mobileColorObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("is-in-view", entry.isIntersecting);
+      });
+    },
+    {
+      rootMargin: "-28% 0px -28% 0px",
+      threshold: 0
+    }
+  );
+
+  projectCards.forEach((card) => mobileColorObserver.observe(card));
+};
+
+updateMobileColorObserver();
+
+if (typeof mobileColorQuery.addEventListener === "function") {
+  mobileColorQuery.addEventListener("change", updateMobileColorObserver);
+} else {
+  mobileColorQuery.addListener(updateMobileColorObserver);
+}
+
 document.addEventListener("mousemove", (event) => {
   if (!viewCursor) return;
   viewCursor.style.left = `${event.clientX}px`;
@@ -178,6 +210,7 @@ modal?.addEventListener("click", (event) => {
 });
 
 modal?.addEventListener("close", () => {
+  delete modal.dataset.project;
   document.body.classList.remove("modal-open");
 });
 
