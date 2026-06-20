@@ -75,14 +75,12 @@ const projects = {
     type: "исследования / редакционная верстка / концепты",
     year: "2024 — 2025",
     description:
-      "Одна папка с презентационными проектами: учебные исследования, визуальный анализ, концепты и редакционная верстка. Внутри собраны Bodom, анализ «Кофемании», Om Nom Game и другие презентационные материалы.",
+      "Одна папка с презентационными проектами: учебные исследования, визуальный анализ, концепты и редакционная верстка. Внутри собраны анализ «Кофемании» и Om Nom Game.",
     extraLinks: [
       { label: "Анализ Кофемании PDF", href: "assets/files/presentations/coffeemania-analysis.pdf" },
       { label: "Om Nom Game PDF", href: "assets/files/presentations/om-nom-game.pdf" }
     ],
     images: [
-      ["assets/images/presentations-editorial-cover.jpg", "Редакционная исследовательская презентация"],
-      ["assets/images/bodom-cover.jpg", "Обложка презентации Bodom"],
       ["assets/images/coffeemania-cover.jpg", "Обложка анализа «Кофемании»"],
       ["assets/images/om-nom-game-cover.jpg", "Обложка презентации Om Nom Game"]
     ]
