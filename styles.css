@@ -7,7 +7,6 @@
   --max: 1440px;
   --gap: clamp(16px, 2vw, 28px);
   --header-h: 48px;
-  --accent-font: "Denistina", "Snell Roundhand", "Brush Script MT", cursive;
 }
 
 * {
@@ -59,13 +58,6 @@ button {
   padding: 0;
   background: none;
   cursor: pointer;
-}
-
-.font-accent {
-  font-family: var(--accent-font);
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
 }
 
 .site-header {
@@ -141,11 +133,6 @@ button {
   max-width: 10.6ch;
   margin-left: auto;
   animation: heroIn 700ms ease both;
-}
-
-.hero h1 .font-accent {
-  font-size: 1.08em;
-  line-height: 0.74;
 }
 
 .hero h1 span,
@@ -238,11 +225,6 @@ button {
 
 .concept-title span {
   display: block;
-}
-
-.concept-title .font-accent {
-  font-size: 1.1em;
-  line-height: 0.8;
 }
 
 .works {
@@ -412,11 +394,6 @@ button {
   font-size: clamp(64px, 13vw, 190px);
 }
 
-.contact h2 .font-accent {
-  font-size: 1.05em;
-  line-height: 0.78;
-}
-
 .contact-bottom {
   grid-column: 4 / -1;
   display: grid;
@@ -460,11 +437,6 @@ button {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-
-.site-footer .font-accent {
-  color: var(--text);
-  font-size: 1.45em;
 }
 
 .project-modal {
