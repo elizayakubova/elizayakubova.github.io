@@ -93,7 +93,6 @@ const modalIndex = document.querySelector("[data-modal-index]");
 const modalTitle = document.querySelector("[data-modal-title]");
 const modalType = document.querySelector("[data-modal-type]");
 const modalYear = document.querySelector("[data-modal-year]");
-const modalDescription = document.querySelector("[data-modal-description]");
 const modalActions = document.querySelector("[data-modal-actions]");
 const modalGallery = document.querySelector("[data-modal-gallery]");
 const viewCursor = document.querySelector(".view-cursor");
@@ -121,7 +120,6 @@ const openProject = (projectId) => {
   modalTitle.textContent = project.title;
   modalType.textContent = project.type;
   modalYear.textContent = project.year;
-  modalDescription.textContent = project.description;
 
   modalActions.replaceChildren();
   if (project.pdf) {
